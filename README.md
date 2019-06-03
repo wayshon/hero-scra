@@ -1,0 +1,2 @@
+# hero-scra
+scrapy
