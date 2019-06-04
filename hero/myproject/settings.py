@@ -15,20 +15,20 @@ SPIDER_MODULES = ['myproject.spiders']
 NEWSPIDER_MODULE = 'myproject.spiders'
 
 FEED_EXPORT_ENCODING = 'utf-8'
-USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.15 Safari/537.36'  #模拟浏览器
-# DEFAULT_REQUEST_HEADERS = {
-#     'accept': 'image/webp,*/*;q=0.8',
-#     'accept-language': 'zh-CN,zh;q=0.8',
-#     'referer': 'https://www.baidu.com/',
-#     'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
-# }
+# USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.15 Safari/537.36'  #模拟浏览器
+DEFAULT_REQUEST_HEADERS = {
+    'accept': 'image/webp,*/*;q=0.8',
+    'accept-language': 'zh-CN,zh;q=0.8',
+    'referer': 'https://www.google.com/',
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36',
+}
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'myproject (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-# ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
