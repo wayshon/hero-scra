@@ -9,6 +9,14 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
+PROXIES = [
+    "http://110.189.223.212:4216",
+    "http://122.194.131.210:4278",
+    "http://125.86.166.80:4697",
+    "http://27.40.90.50:4261",
+    "http://60.185.37.141:4276"
+]
+
 BOT_NAME = 'myproject'
 
 SPIDER_MODULES = ['myproject.spiders']
@@ -61,9 +69,10 @@ ROBOTSTXT_OBEY = False
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
+DOWNLOADER_MIDDLEWARES = {
 #    'myproject.middlewares.MyprojectDownloaderMiddleware': 543,
-#}
+   'myproject.middlewares.ProxyMiddleware': 543,
+}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html

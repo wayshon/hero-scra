@@ -39,10 +39,10 @@ class DoubanSpider(scrapy.Spider):
 
         self.log('保存文件: 成功')
 
-        next_page = response.css('div.paginator > span.next a::attr(href)').extract_first()
-        if next_page is not None: 
-            next_page = response.urljoin(next_page)
-            yield scrapy.Request(next_page, callback=self.parse)
+        # next_page = response.css('div.paginator > span.next a::attr(href)').extract_first()
+        # if next_page is not None: 
+        #     next_page = response.urljoin(next_page)
+        #     yield scrapy.Request(next_page, callback=self.parse)
 
         
         
