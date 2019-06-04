@@ -9,12 +9,30 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
+MONGODB_SETTINGS = {
+    'db': 'pet',
+    'host': '127.0.0.1',
+    'port': 27017,
+    'username':'root',
+    'password':'123456'
+}
+
 PROXIES = [
-    "http://110.189.223.212:4216",
-    "http://122.194.131.210:4278",
-    "http://125.86.166.80:4697",
-    "http://27.40.90.50:4261",
-    "http://60.185.37.141:4276"
+    'http://182.86.8.100:4235',
+    'http://202.104.185.177:4223',
+    'http://182.244.168.252:4228',
+    'http://111.79.192.27:4221',
+    'http://36.56.146.98:4242',
+    'http://182.35.80.54:4276',
+    'http://115.218.239.51:4231',
+    'http://117.84.63.31:4283',
+    'http://114.230.117.43:4245',
+    'http://117.35.55.140:4251',
+    'http://114.102.34.117:4216',
+    'http://112.113.157.236:4256',
+    'http://114.230.68.225:4282',
+    'http://106.56.245.241:4281',
+    'http://123.156.187.145:4281'
 ]
 
 BOT_NAME = 'myproject'
@@ -83,7 +101,8 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'myproject.pipelines.MyprojectPipeline': 300,
+   'myproject.pipelines.MyprojectPipeline': 299,
+   'myproject.pipelines.MongoDBPipeline': 300
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

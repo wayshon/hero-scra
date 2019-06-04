@@ -3,6 +3,15 @@ import scrapy
 
 import json
 
+class Product(scrapy.Item):
+    title = scrapy.Field()
+    href = scrapy.Field()
+    comment = scrapy.Field()
+    username = scrapy.Field()
+    userlink = scrapy.Field()
+    upodatetime = scrapy.Field()
+    last_updated = scrapy.Field(serializer=str)
+
 class DoubanSpider(scrapy.Spider):
     name = 'douban'
     allowed_domains = ['douban.com']
@@ -18,7 +27,7 @@ class DoubanSpider(scrapy.Spider):
 
     # 如果是简写初始url，此方法名必须为：parse
     def parse(self, response):
-        results = []
+        # results = []
         trs = response.css('table.olt tr')
         for tr in trs:
             title = tr.css('td.title a::attr(title)').extract_first()
@@ -31,18 +40,23 @@ class DoubanSpider(scrapy.Spider):
             commentNum = 0
             if (comment):
                 commentNum = int(comment)
-            # yield {'title': title, 'href': href, 'upodatetime': upodatetime}
-            results.append({'title': title, 'href': href, 'username': username, 'userlink': userlink, 'comment': commentNum, 'upodatetime': upodatetime})
+            
+            product = Product(title=title,href=href,comment=commentNum,username=username,userlink=userlink,upodatetime=upodatetime)
 
-        with open('douban.json', 'a', encoding='utf-8') as f:
-            json.dump(results, f, ensure_ascii=False)
+            yield product
 
-        self.log('保存文件: 成功')
+            # results.append(dict(product))
+            # results.append({'title': title, 'href': href, 'username': username, 'userlink': userlink, 'comment': commentNum, 'upodatetime': upodatetime})
 
-        # next_page = response.css('div.paginator > span.next a::attr(href)').extract_first()
-        # if next_page is not None: 
-        #     next_page = response.urljoin(next_page)
-        #     yield scrapy.Request(next_page, callback=self.parse)
+        # with open('douban.json', 'a', encoding='utf-8') as f:
+        #     json.dump(results, f, ensure_ascii=False)
+
+        # self.log('保存文件: 成功')
+
+        next_page = response.css('div.paginator > span.next a::attr(href)').extract_first()
+        if next_page is not None: 
+            next_page = response.urljoin(next_page)
+            yield scrapy.Request(next_page, callback=self.parse)
 
         
         
